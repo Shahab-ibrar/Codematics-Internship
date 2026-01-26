@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web Page Layout</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        Header, nav ,footer{
+            padding: 30px;
+            margin: 10px;
+            background: #e6e6e6;
+        }
+
+        main{
+            display: flex;
+            gap: 10px;
+            margin: 10px;
+        }
+
+        aside{
+            background: #e6e6e6;
+            width: 25%;
+            padding:100px 20px;
+        }
+
+        section{
+            background: #e6e6e6;
+            flex: 1;
+            padding:100px 20px;
+        }
+
+        footer {
+            padding: 20px;
+        }
+    </style>
+  
+
+</head>
+<body>
+    
+    <header>Header</header>
+    
+    <nav>Navigation Menu</nav>
+
+    <main>
+        <aside>content</aside>
+        <section>Main Content</section>
+        <aside>content</aside>
+    </main>
+
+    <footer>Footer</footer>
+
+
+</body>
+</html>
