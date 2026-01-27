@@ -1,0 +1,146 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* ================= LAYOUT ================= */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.two-col {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ================= HERO ================= */
+.logo {
+  width: 160px;
+}
+
+.tagline {
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.sub {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.buttons img {
+  width: 150px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* ================= COMMON CONTENT ================= */
+.content h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 20px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ================= CHANNELS ================= */
+.channels-content {
+  margin-left: 80px;
+  margin-top: -20px;
+}
+
+.channels-heading {
+  margin-left: 0;
+}
+
+.channels-text {
+  margin-left: 0;
+}
+
+/* ================= MESSAGES ================= */
+.messages-content {
+  margin-right: 80px;
+  margin-top: -40px;
+}
+
+.messages-heading {
+  margin-left: -40px;
+}
+
+.messages-text {
+  margin-left: -40px;
+}
+
+/* ================= FUTURE ================= */
+.future-content {
+  margin-left: 80px;
+  margin-top: -30px;
+}
+
+.future-heading {
+  margin-left: 0;
+}
+
+.future-text {
+  margin-left: 0;
+}
+
+.vector-img {
+  width: 450px;    
+  height: 50px;  
+}
+.vector {
+  transform: translateY(-60px);
+}
+
+
+/* ================= IMAGES ================= */
+.image img {
+  width: 100%;
+  max-width: 350px;
+}
+
+/* ================= SECTIONS ================= */
+.section.light {
+  background: #ffffff;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.footer a {
+  color: #4da6ff;
+  text-decoration: none;
+}
+
+.footer-logo {
+  margin-top: 30px;
+  width: 80px;
+}
+
+.store-btn {
+  width: 150px;
+  
+}
