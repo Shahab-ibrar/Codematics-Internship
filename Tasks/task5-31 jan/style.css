@@ -36,8 +36,9 @@ body {
     font-weight: bold;
 }
 .right-header h1{
+   font-family: Arial, Helvetica, sans-serif;
   text-decoration: overline;
-  font-size: 40px;
+  font-size: 43px;
    margin: 5px 0;
 }
 .right-header h4{
@@ -842,11 +843,70 @@ body{
   }
 }  
 }
-
-
 .container{
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;   /* yahi magic space hai */
+  padding: 0 20px; 
+}
+
+
+.follow-us{
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.follow-us h3{ 
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  position: relative;
+  
+}
+
+.follow-us span{
+  font-size: 25px;
+  coLor: #7a1e1e;
+}
+.follow-us h3::after{
+  content: "";
+  display: block;
+  width: 160px;
+  height: 2px;
+  background: #777;
+  margin: 6px auto 10px;
+  text-align: left;
+  margin-left: 5px;
+}
+
+.follow-icons{
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10px;
+  gap: 8px;
+  
+}
+
+.follow-icons img{
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.follow-icons img:hover{
+  transform: scale(1.1);
+}
+
+.footer-red-line{
+  height: 9px;
+  background: linear-gradient(to bottom, #b00000, #700000);
+}
+
+.footer-dark{
+  height: 15px;
+  background: linear-gradient(to bottom, #3a3a3a, #1e1e1e);
 }
 
