@@ -1,6 +1,3 @@
-
-//////////////////// SHOW / HIDE FUNCTION ////////////////////
-
 function showSection(id) {
 
   document.querySelectorAll(".section").forEach(sec => {
