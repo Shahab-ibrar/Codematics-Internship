@@ -1,5 +1,4 @@
 
-
 //////////////////// SHOW / HIDE FUNCTION ////////////////////
 
 function showSection(id) {
@@ -20,12 +19,13 @@ let prevBtn = document.getElementById("prev");
 
 let index = 0;
 let totalSlides = slider.children.length;
+updateButtons();
 
 nextBtn.addEventListener("click", () => {
   index++;
 
   if (index >= totalSlides) {
-    index = 0;
+    index = totalSlides - 1; 
   }
 
   updateSlider();
@@ -35,11 +35,12 @@ prevBtn.addEventListener("click", () => {
   index--;
 
   if (index < 0) {
-    index = totalSlides - 1;
+    index = 0; 
   }
 
   updateSlider();
 });
+
 function updateSlider() {
   slider.style.transform = `translateX(-${index * 100}%)`;
   updateButtons();
@@ -51,13 +52,13 @@ function updateButtons() {
   } else {
     prevBtn.style.display = "block";
   }
+
   if (index === totalSlides - 1) {
     nextBtn.style.display = "none";
   } else {
     nextBtn.style.display = "block";
   }
 }
-
 //////////////////// CALCULATOR ////////////////////
 
 let display = document.getElementById("display");
