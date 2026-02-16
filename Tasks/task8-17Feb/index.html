@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Tasks</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
 
+<body class="bg-gray-100">
+
+<h1 class="text-3xl font-bold text-center mt-6">
+ JavaScript Task 8
+</h1>
+
+<!-- ================= TOP NAV BUTTONS ================= -->
+
+<div class="sticky top-0 bg-white shadow-md z-50 mt-4">
+  <div class="max-w-6xl mx-auto p-3 flex flex-wrap gap-2 justify-center">
+
+    <button onclick="showSection('carousel')" class="bg-blue-500 text-white px-4 py-2 rounded">Carousel</button>
+    <button onclick="showSection('calculator')" class="bg-green-500 text-white px-4 py-2 rounded">Calculator</button>
+    <button onclick="showSection('clock')" class="bg-purple-500 text-white px-4 py-2 rounded">Clock</button>
+    <button onclick="showSection('temperature')" class="bg-pink-500 text-white px-4 py-2 rounded">Temperature</button>
+    <button onclick="showSection('password')" class="bg-yellow-500 text-white px-4 py-2 rounded">Password</button>
+    <button onclick="showSection('todo')" class="bg-indigo-500 text-white px-4 py-2 rounded">Todo</button>
+
+  </div>
+</div>
+
+
+<div class="max-w-6xl mx-auto p-4 space-y-20">
+
+<!-- ================= TASK 1 ================= -->
+
+<div id="carousel" class="section flex justify-center">
+  <div class="relative w-full md:w-[600px] overflow-hidden rounded-2xl shadow-lg">
+    <div id="slider" class="flex transition-transform duration-500">
+      <img src="https://picsum.photos/id/1015/600/300" class="w-full">
+      <img src="https://picsum.photos/id/1016/600/300" class="w-full">
+      <img src="https://picsum.photos/id/1018/600/300" class="w-full">
+      <img src="https://picsum.photos/id/1018/600/300" class="w-full">
+      <img src="https://picsum.photos/id/1018/600/300" class="w-full">
+      <img src="https://picsum.photos/id/1018/600/300" class="w-full">
+    </div>
+
+    <button id="prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-2 py-5 rounded">❮</button>
+    <button id="next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-2 py-5 rounded">❯</button>
+  </div>
+</div>
+
+
+<!-- ================= TASK 2 ================= -->
+
+<div id="calculator" class="section flex justify-center hidden">
+  <div class="bg-black p-6 rounded-2xl shadow-lg w-72">
+
+    <input type="text" id="display"
+      class="w-full mb-4 p-3 border rounded text-right text-xl"
+      readonly>
+
+    <div class="grid grid-cols-3 gap-2">
+
+      <button onclick="clearDisplay()" class="bg-red-400 text-white p-2 rounded">C</button>
+      <button onclick="appendValue('/')" class="bg-yellow-400 p-2 rounded">÷</button>
+      <button onclick="appendValue('*')" class="bg-yellow-400 p-2 rounded">×</button>
+      <button onclick="appendValue('-')" class="bg-yellow-400 p-2 rounded">−</button>
+      <button onclick="appendValue('+')" class="bg-yellow-400 p-2 rounded">+</button>
+
+      <button onclick="appendValue('9')" class="bg-blue-400 p-2 rounded">9</button>
+      <button onclick="appendValue('6')" class="bg-blue-400 p-2 rounded">6</button>
+      <button onclick="appendValue('7')" class="bg-blue-400 p-2 rounded">7</button>
+
+      <button onclick="appendValue('8')" class="bg-blue-400 p-2 rounded">8</button>
+      <button onclick="appendValue('3')" class="bg-blue-400 p-2 rounded">3</button>
+      <button onclick="appendValue('4')" class="bg-blue-400 p-2 rounded">4</button>
+
+      <button onclick="appendValue('5')" class="bg-blue-400 p-2 rounded">5</button>
+      <button onclick="appendValue('1')" class="bg-blue-400 p-2 rounded">1</button>
+      <button onclick="appendValue('2')" class="bg-blue-400 p-2 rounded">2</button>
+
+      <button onclick="calculate()" class="bg-green-400 text-white row-span-2 rounded">=</button>
+      <button onclick="appendValue('.')" class="bg-blue-400 p-2 rounded">.</button>
+      <button onclick="appendValue('0')" class="bg-blue-400 p-2 rounded">0</button>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= TASK 3 ================= -->
+<div id="clock" class="section flex justify-center hidden">
+  <div class="bg-black text-green-400 px-10 py-6 rounded-2xl shadow-lg text-4xl font-mono text-center">
+
+    <div class="flex items-center justify-center gap-2">
+
+      <!-- TIME -->
+      <span id="hours">00</span> :
+      <span id="minutes">00</span> :
+      <span id="seconds">00</span>
+
+      <!-- AM PM -->
+      <span id="ampm" class="text-2xl">AM</span>
+
+    </div>
+  </div>
+</div>
+<!-- ================= TASK 4 ================= -->
+
+<div id="temperature" class="section flex justify-center hidden">
+  <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+
+    <h1 class="text-2xl font-bold text-center mb-6"> Temperature Converter</h1>
+
+    <input type="number" id="tempInput"
+      placeholder="Enter temperature..."
+      class="w-full p-3 rounded-xl border mb-5">
+
+    <div class="flex gap-3 mb-5">
+
+      <button onclick="toCelsius()" class="flex-1 bg-blue-500 text-white p-3 rounded-xl">
+        To °C
+      </button>
+
+      <button onclick="toFahrenheit()" class="flex-1 bg-pink-500 text-white p-3 rounded-xl">
+        To °F
+      </button>
+
+    </div>
+
+    <div id="result" class="text-center text-lg font-semibold bg-gray-100 p-4 rounded-xl">
+      Result will appear here
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ================= TASK 5 ================= -->
+
+<div id="password" class="section flex justify-center hidden">
+  <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+
+    <h1 class="text-2xl font-bold text-center mb-6">Password Generator</h1>
+
+    <div class="flex mb-4">
+      <input type="text" id="passwordField"
+        readonly
+        class="flex-1 p-3 border rounded-l-xl"
+        placeholder="Your password...">
+      <button onclick="copyPassword()" class="bg-blue-500 text-white px-4 rounded-r-xl">
+        Copy
+      </button>
+    </div>
+
+    <div class="space-y-2 mb-4">
+      <label class="flex justify-between"><span>Uppercase</span><input type="checkbox" id="upper" checked></label>
+      <label class="flex justify-between"><span>Lowercase</span><input type="checkbox" id="lower" checked></label>
+      <label class="flex justify-between"><span>Numbers</span><input type="checkbox" id="numbers" checked></label>
+      <label class="flex justify-between"><span>Symbols</span><input type="checkbox" id="symbols"></label>
+    </div>
+
+    <button onclick="generatePassword()" class="w-full bg-purple-600 text-white p-3 rounded-xl">
+      Generate Password
+    </button>
+
+  </div>
+</div>
+
+
+<!-- ================= TASK 6 ================= -->
+
+<div id="todo" class="section flex justify-center hidden">
+  <div class="bg-white w-full max-w-md p-6 rounded-2xl shadow-2xl">
+
+    <h1 class="text-2xl font-bold text-center mb-4">Todo List</h1>
+
+    <div class="flex gap-2 mb-4">
+      <input type="text" id="taskInput"
+        placeholder="Add a new task..."
+        class="flex-1 p-2 border rounded-lg">
+      <button onclick="addTask()" class="bg-indigo-600 text-white px-4 rounded-lg">
+        Add
+      </button>
+    </div>
+
+    <ul id="taskList" class="space-y-2"></ul>
+
+  </div>
+</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
