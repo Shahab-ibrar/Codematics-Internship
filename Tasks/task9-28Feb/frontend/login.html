@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Manager Pro - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        primary: '#6366f1',
+                        primaryDark: '#4f46e5',
+                        darkBg: '#0f172a',
+                        darkCard: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .login-bg {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+        }
+        .dark .login-bg {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 100%);
+        }
+    </style>
+</head>
+<body class="login-bg text-slate-800 dark:text-slate-200 transition-colors duration-300 antialiased min-h-screen flex items-center justify-center p-4">
+
+    <!-- Absolute Theme Toggle -->
+    <button id="themeToggle" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-darkCard shadow-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-all hover:scale-110">
+        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+        <i class="fa-solid fa-sun hidden dark:inline text-yellow-500 text-lg"></i>
+    </button>
+
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary text-white text-4xl shadow-xl shadow-primary/40 mb-4 transform -rotate-6 hover:rotate-0 transition-all duration-300">
+                <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 dark:from-indigo-400 dark:to-purple-400">LibManager Pro</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-2 font-medium">Welcome back! Please login to your account.</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-white/80 dark:bg-darkCard/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl glass-card border border-white/20 dark:border-slate-700/50">
+            <form id="loginForm" class="space-y-6">
+                <!-- Username -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Username</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="text" id="username" required placeholder="Enter your username" autocomplete="username"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary text-slate-900 dark:text-slate-100 transition-all">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Password</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="password" id="password" required placeholder="Enter your password" autocomplete="current-password"
+                            class="w-full pl-11 pr-12 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary text-slate-900 dark:text-slate-100 transition-all">
+                        <button type="button" id="togglePassword" class="absolute right-4 top-3.5 text-slate-400 hover:text-primary transition-colors">
+                            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Error Message Container (Hidden by default) -->
+                <div id="loginError" class="hidden flex items-center gap-2 text-sm text-red-500 bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800/50">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="loginErrorText">Invalid credentials.</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="loginBtn" class="w-full bg-primary hover:bg-primaryDark text-white py-3.5 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 transition-all hover:-translate-y-1 mt-4 flex items-center justify-center gap-2">
+                    <span>Sign In</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Demo Credentials hint -->
+                <div class="text-center mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Demo Credentials</p>
+                    <p class="text-sm font-mono text-slate-700 dark:text-slate-300 mt-1">user: <span class="font-bold">admin</span> | pass: <span class="font-bold">admin123</span></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Minimal JS for Login Logic inline to keep it simple -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme setup
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            if(themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    html.classList.toggle('dark');
+                    localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+                });
+            }
+
+            // Redirect if already logged in
+            if(localStorage.getItem('token')) {
+                window.location.href = 'index.html';
+            }
+
+            // Password Toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordNode = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            togglePassword.addEventListener('click', () => {
+                const type = passwordNode.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordNode.setAttribute('type', type);
+                eyeIcon.className = type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+            });
+
+            // Form Submit Logic
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const btn = document.getElementById('loginBtn');
+                const errorBox = document.getElementById('loginError');
+                errorBox.classList.add('hidden'); // Hide previous error
+                
+                // Loading state
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+                btn.disabled = true;
+
+                try {
+                    // Standalone mode: validate credentials locally (no backend required)
+                    const username = document.getElementById('username').value.trim();
+                    const password = passwordNode.value;
+
+                    // Defined valid users — extend this list as needed
+                    const validUsers = [
+                        { username: 'admin', password: 'admin123' }
+                    ];
+
+                    // Small artificial delay so the loading state is visible
+                    await new Promise(resolve => setTimeout(resolve, 600));
+
+                    const match = validUsers.find(u => u.username === username && u.password === password);
+                    if (!match) {
+                        throw new Error('Invalid username or password.');
+                    }
+
+                    // Save to local storage (fake token for route-guard compatibility)
+                    localStorage.setItem('token', 'local-auth-token');
+                    localStorage.setItem('username', username);
+                    
+                    // Success! Redirect.
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Success!';
+                    btn.classList.replace('bg-primary', 'bg-green-500');
+                    btn.classList.replace('hover:bg-primaryDark', 'hover:bg-green-600');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 500);
+
+                } catch (error) {
+                    // Reset styling and show error
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    document.getElementById('loginErrorText').textContent = error.message;
+                    errorBox.classList.remove('hidden');
+                    
+                    // Simple shake animation
+                    errorBox.animate([
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(-5px)' },
+                        { transform: 'translateX(5px)' },
+                        { transform: 'translateX(-5px)' },
+                        { transform: 'translateX(5px)' },
+                        { transform: 'translateX(0)' }
+                    ], { duration: 400 });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

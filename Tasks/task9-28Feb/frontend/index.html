@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Manager Pro - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Outfit", "sans-serif"] },
+            colors: {
+              primary: "#6366f1",
+              primaryDark: "#4f46e5",
+              darkBg: "#0f172a",
+              darkCard: "#1e293b",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-200 transition-colors duration-300 antialiased min-h-screen flex"
+  >
+    <!-- Sidebar -->
+    <aside
+      class="w-64 bg-white dark:bg-darkCard shadow-xl h-screen sticky top-0 flex flex-col transition-colors duration-300 z-10 hidden md:flex"
+    >
+      <div
+        class="h-20 flex items-center justify-center border-b border-slate-200 dark:border-slate-700"
+      >
+        <h1 class="text-2xl font-bold text-primary flex items-center gap-2">
+          <i class="fa-solid fa-book-open-reader"></i> LibManager
+        </h1>
+      </div>
+      <nav class="flex-1 px-4 py-8 space-y-2">
+        <a
+          href="index.html"
+          class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/30 transition-all font-semibold"
+        >
+          <i class="fa-solid fa-chart-pie w-5"></i> Dashboard
+        </a>
+        <a
+          href="books.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-xl transition-all font-medium"
+        >
+          <i class="fa-solid fa-book w-5"></i> Books Output
+        </a>
+        <a
+          href="members.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-xl transition-all font-medium"
+        >
+          <i class="fa-solid fa-users w-5"></i> Members
+        </a>
+        <a
+          href="issue_return.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-xl transition-all font-medium"
+        >
+          <i class="fa-solid fa-hand-holding-hand w-5"></i> Issue / Return
+        </a>
+        
+        <div class="pt-8 mb-4">
+            <hr class="border-slate-200 dark:border-slate-700 mb-4">
+            <a href="#" id="logoutBtn" class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-all font-medium">
+                <i class="fa-solid fa-sign-out-alt w-5"></i> Logout
+            </a>
+        </div>
+      </nav>
+      <div class="p-4 border-t border-slate-200 dark:border-slate-700">
+        <button
+          id="themeToggle"
+          class="w-full flex items-center justify-center gap-2 px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+        >
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:inline text-yellow-500"></i>
+          <span class="dark:hidden">Dark Mode</span>
+          <span class="hidden dark:inline">Light Mode</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
+      <header
+        class="h-20 bg-white/80 dark:bg-darkCard/80 backdrop-blur-md sticky top-0 z-10 px-8 flex items-center justify-between border-b border-slate-200 dark:border-slate-700 shadow-sm"
+      >
+        <h2 class="text-2xl font-bold">Dashboard Overview</h2>
+        <div class="flex items-center gap-4">
+          <span id="headerUserName" class="hidden sm:inline font-medium text-slate-600 dark:text-slate-300">Admin</span>
+          <div class="relative">
+            <img
+              src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff"
+              class="w-10 h-10 rounded-full shadow-md"
+              alt="Admin"
+            />
+            <div
+              class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-darkCard rounded-full"
+            ></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-8 flex-1 space-y-8 max-w-7xl mx-auto w-full">
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Stat Card 1 -->
+          <div
+            class="bg-white dark:bg-darkCard rounded-2xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform duration-300 glass-card"
+          >
+            <div class="flex justify-between items-start">
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Total Books
+                </p>
+                <h3
+                  class="text-3xl font-bold text-slate-800 dark:text-white"
+                  id="stat-total-books"
+                >
+                  0
+                </h3>
+              </div>
+              <div
+                class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl"
+              >
+                <i class="fa-solid fa-swatchbook"></i>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+              <span class="text-green-500 font-medium flex items-center gap-1"
+                ><i class="fa-solid fa-arrow-up"></i> Unique</span
+              >
+              <span class="text-slate-400 ml-2">Titles in library</span>
+            </div>
+          </div>
+
+          <!-- Stat Card 2 -->
+          <div
+            class="bg-white dark:bg-darkCard rounded-2xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform duration-300 glass-card"
+          >
+            <div class="flex justify-between items-start">
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Total Inventory
+                </p>
+                <h3
+                  class="text-3xl font-bold text-slate-800 dark:text-white"
+                  id="stat-inventory"
+                >
+                  0
+                </h3>
+              </div>
+              <div
+                class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl"
+              >
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+              <span class="text-green-500 font-medium flex items-center gap-1"
+                ><i class="fa-solid fa-cubes"></i> Stock</span
+              >
+              <span class="text-slate-400 ml-2">Total quantity</span>
+            </div>
+          </div>
+
+          <!-- Stat Card 3 -->
+          <div
+            class="bg-white dark:bg-darkCard rounded-2xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform duration-300 glass-card"
+          >
+            <div class="flex justify-between items-start">
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Total Members
+                </p>
+                <h3
+                  class="text-3xl font-bold text-slate-800 dark:text-white"
+                  id="stat-members"
+                >
+                  0
+                </h3>
+              </div>
+              <div
+                class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 text-xl"
+              >
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+              <span class="text-purple-500 font-medium flex items-center gap-1"
+                ><i class="fa-solid fa-user-plus"></i> Registered</span
+              >
+              <span class="text-slate-400 ml-2">Active readers</span>
+            </div>
+          </div>
+
+          <!-- Stat Card 4 -->
+          <div
+            class="bg-white dark:bg-darkCard rounded-2xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform duration-300 glass-card"
+          >
+            <div class="flex justify-between items-start">
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Issued Books
+                </p>
+                <h3
+                  class="text-3xl font-bold text-slate-800 dark:text-white"
+                  id="stat-issued"
+                >
+                  0
+                </h3>
+              </div>
+              <div
+                class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-orange-600 dark:text-orange-400 text-xl"
+              >
+                <i class="fa-solid fa-hand-holding-hand"></i>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+              <span class="text-orange-500 font-medium flex items-center gap-1"
+                ><i class="fa-solid fa-hourglass-half"></i> Ongoing</span
+              >
+              <span class="text-slate-400 ml-2">Pending returns</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div
+          class="bg-white dark:bg-darkCard rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 overflow-hidden glass-card"
+        >
+          <div
+            class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-bold">Recent Transactions</h3>
+            <a
+              href="issue_return.html"
+              class="text-sm text-primary hover:text-primaryDark font-medium transition-colors"
+              >View All</a
+            >
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-sm uppercase tracking-wider"
+                >
+                  <th class="p-4 font-medium">Transaction ID</th>
+                  <th class="p-4 font-medium">Book ID</th>
+                  <th class="p-4 font-medium">Member ID</th>
+                  <th class="p-4 font-medium">Date</th>
+                  <th class="p-4 font-medium">Status</th>
+                </tr>
+              </thead>
+              <tbody
+                id="recent-transactions-tbody"
+                class="divide-y divide-slate-100 dark:divide-slate-700/50"
+              >
+                <!-- Transactions dynamically loaded here -->
+                <tr>
+                  <td colspan="5" class="p-8 text-center text-slate-500">
+                    <i
+                      class="fa-solid fa-circle-notch fa-spin text-primary text-2xl mb-2"
+                    ></i
+                    ><br />Loading transactions...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          // Fetch Stats
+          const stats = await API.getStats();
+          if (stats) {
+            document.getElementById("stat-total-books").textContent =
+              stats.totalBooks || 0;
+            document.getElementById("stat-inventory").textContent =
+              stats.totalInventory || 0;
+            document.getElementById("stat-members").textContent =
+              stats.totalMembers || 0;
+            document.getElementById("stat-issued").textContent =
+              stats.issuedBooks || 0;
+          }
+
+          // Fetch Recent Transactions
+          const transactions = await API.getTransactions();
+          const tbody = document.getElementById("recent-transactions-tbody");
+          tbody.innerHTML = "";
+
+          if (!transactions || transactions.length === 0) {
+            tbody.innerHTML =
+              '<tr><td colspan="5" class="p-8 text-center text-slate-500">No recent transactions.</td></tr>';
+            return;
+          }
+
+          // Show top 5 recent
+          const recentTx = transactions.reverse().slice(0, 5);
+          recentTx.forEach((tx) => {
+            const statusClass =
+              tx.status === "returned"
+                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                : "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400";
+
+            tbody.innerHTML += `
+                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer group">
+                            <td class="p-4 font-medium text-slate-900 dark:text-slate-200">#${tx.id}</td>
+                            <td class="p-4 text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">${tx.bookId}</td>
+                            <td class="p-4 text-slate-600 dark:text-slate-400">${tx.memberId}</td>
+                            <td class="p-4 text-slate-600 dark:text-slate-400">${tx.issueDate}</td>
+                            <td class="p-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${statusClass}">
+                                    ${tx.status}
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+          });
+        } catch (e) {
+          console.error("Dashboard load error", e);
+        }
+      });
+    </script>
+  </body>
+</html>
